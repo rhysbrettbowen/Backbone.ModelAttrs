@@ -24,3 +24,12 @@ _.extend(mod, toAttrs(mod));
 
 mod.lastName(); // Goldsberg
 ```
+
+You will still have to use set if adding new attributes and then rerun the toAttrs function. You could create a newAttribute function on the model to do this for you:
+
+```javascript
+Backbone.Model.prototype.newAttribute = function(key, val, options) {
+	this.set(key, val, options);
+	toAttrs(this);
+}
+```
